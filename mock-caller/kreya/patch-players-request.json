@@ -1,0 +1,32 @@
+[
+  {
+    "name": "player 1",
+    "email": "player0@gmail.com",
+    "password": "12345671",
+    "dateOfBirth": "1990-01-01"
+  },
+  {
+    "name": "player 1",
+    "email": "player1@gmail.com",
+    "password": "12345672",
+    "dateOfBirth": "1990-01-02"
+  },
+  {
+    "name": "player 3",
+    "email": "player3@gmail.com",
+    "password": "12345673",
+    "dateOfBirth": "1990-01-03"
+  },
+  {
+    "name": "player 4",
+    "email": "player4@gmail.com",
+    "password": "12345674",
+    "dateOfBirth": "1990-01-04"
+  },
+  {
+    "name": "player 5",
+    "email": "player5@gmail.com",
+    "password": "12345675",
+    "dateOfBirth": "1990-01-05"
+  }
+]

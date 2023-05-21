@@ -1,0 +1,16 @@
+{
+  "details": {
+    "path": "/players/1",
+    "method": "DELETE",
+    "headers": [],
+    "pathParams": []
+  },
+  "requests": [
+    {
+      "contentType": "none"
+    }
+  ],
+  "operationType": "unary",
+  "invokerName": "rest",
+  "typeHint": "DELETE"
+}

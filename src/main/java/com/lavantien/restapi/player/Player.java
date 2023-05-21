@@ -1,12 +1,16 @@
 package com.lavantien.restapi.player;
 
+import java.time.LocalDate;
+import java.util.Objects;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
-import java.time.LocalDate;
-import java.util.Objects;
 
 @Entity
 public class Player {
@@ -16,12 +20,13 @@ public class Player {
     private String name;
     private String email;
     private String password;
+    @JsonFormat(pattern="yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateOfBirth;
 
     // Generated boilerplate code
 
-    public Player(Long id, String name, String email, String password, LocalDate dateOfBirth) {
-        this.id = id;
+    public Player(String name, String email, String password, LocalDate dateOfBirth) {
         this.name = name;
         this.email = email;
         this.password = password;
@@ -87,11 +92,11 @@ public class Player {
     @Override
     public String toString() {
         return "Player{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", dateOfBirth=" + dateOfBirth +
-                '}';
+            "id=" + id +
+            ", name='" + name + '\'' +
+            ", email='" + email + '\'' +
+            ", password='" + password + '\'' +
+            ", dateOfBirth=" + dateOfBirth +
+            '}';
     }
 }

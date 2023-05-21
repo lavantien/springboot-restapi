@@ -1,20 +1,20 @@
-services:
-  db:
-    container_name: postgres
-    image: postgres
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: password
-      PGDATA: /data/postgres
-    ports:
-      - 5433:5432
-    volumes:
-      - db:/data/postgres
-    networks:
-      - db
-    restart: unless-stopped
 networks:
   db:
     driver: bridge
+services:
+  db:
+    container_name: postgres
+    environment:
+      PGDATA: /data/postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: postgres
+    image: postgres
+    networks:
+      - db
+    ports:
+      - 5433:5432
+    restart: unless-stopped
+    volumes:
+      - db:/data/postgres
 volumes:
   db:

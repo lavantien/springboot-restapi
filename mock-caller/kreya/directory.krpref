@@ -1,0 +1,12 @@
+{
+  "settings": [
+    {
+      "options": {
+        "rest": {
+          "endpoint": "http://localhost:8081/api",
+          "pathParams": []
+        }
+      }
+    }
+  ]
+}

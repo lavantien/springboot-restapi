@@ -2,9 +2,9 @@ server:
   port: 8081
 spring:
   datasource:
+    password: password
     url: jdbc:postgresql://localhost:5433/player
     username: postgres
-    password: password
   jpa:
     hibernate:
       ddl-auto: create-drop

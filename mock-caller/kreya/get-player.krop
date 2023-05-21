@@ -1,0 +1,16 @@
+{
+  "details": {
+    "path": "/players/6",
+    "method": "GET",
+    "headers": [],
+    "pathParams": []
+  },
+  "requests": [
+    {
+      "contentType": "none"
+    }
+  ],
+  "operationType": "unary",
+  "invokerName": "rest",
+  "typeHint": "GET"
+}

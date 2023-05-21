@@ -1,0 +1,22 @@
+{
+  "details": {
+    "path": "/players",
+    "method": "POST",
+    "headers": [
+      {
+        "key": "Content-Type",
+        "value": "application/json"
+      }
+    ],
+    "pathParams": []
+  },
+  "requests": [
+    {
+      "location": "post-player-request.json",
+      "contentType": "json"
+    }
+  ],
+  "operationType": "unary",
+  "invokerName": "rest",
+  "typeHint": "POST"
+}

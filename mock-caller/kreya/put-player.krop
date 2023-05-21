@@ -1,0 +1,22 @@
+{
+  "details": {
+    "path": "/players/6",
+    "method": "PUT",
+    "headers": [
+      {
+        "key": "Content-Type",
+        "value": "application/json"
+      }
+    ],
+    "pathParams": []
+  },
+  "requests": [
+    {
+      "location": "put-player-request.json",
+      "contentType": "json"
+    }
+  ],
+  "operationType": "unary",
+  "invokerName": "rest",
+  "typeHint": "PUT"
+}

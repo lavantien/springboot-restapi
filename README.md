@@ -27,6 +27,8 @@
 
 ## Local Setup
 
+### With an IDE
+
 - Install `Java 20`, latest `Docker`, and `IntelliJ Community` with the `IdeaVim` & `Docker` plugins installed
 - Run the database by open project with IntelliJ, open `compose.yaml` and hit run
 - Create `player` database in a terminal:
@@ -40,7 +42,35 @@ $ docker exec -it postgres bash
 ```
 
 - Run the backend by open `com/lavantien/restapi/RestapiApplication.java` and hit run
+
+### With Neovim
+
+- Install `Java 20`, latest `Docker`, and `Neovim` with the `Mason` plugins installed; Use `Mason` to installed a Java LS
+- Run the database in a terminal:
+
+```bash
+$ docker compose up -d
+```
+
+- Create `player` database in a terminal:
+
+```bash
+$ docker exec -it postgres bash
+# psql -U postgres
+# create database player;
+```
+
+- Run the backend in a terminal:
+
+```bash
+$ mvn install
+$ mvn spring-boot:run
+```
+
+### Common
+
 - Using `curl` or any mock callers to test the endpoints at `localhost:8081`
+- Or you can use `Kreya` and take advantage of the `mock-caller` directory
 - There will be an existing list of players migrated to the database for testing purpose
 
 ## API Documentation
@@ -69,13 +99,13 @@ $ docker exec -it postgres bash
 
 ```
 
-- `PUT /api/players/{id}` edit an existing player with the matching `id`; returned the newly edited player
+- `PUT /api/players/{id}` edits an existing player with the matching `id`; returned the newly edited player; creates new player if not existed
 
 ```json
 
 ```
 
-- `DELETE /api/players/{id}` delete an existing player with the matching `id`; returned nothing if success
+- `DELETE /api/players/{id}` deletes an existing player with the matching `id`; returned nothing if success
 
 ```json
 
