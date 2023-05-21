@@ -2,16 +2,16 @@
 
 ## Includes
 
-- Utilize Java 20
-- Spring Command Line Runner for migrating players data
-- Handle LocalDate serialize/deserialize
-- Spring Web CRUD
-- Spring Data JPA
-- PostgreSQL
-- Docker Compose
-- Spring HATEOAS
-- Combinator Validation
-- Spring Boot Test Starter (Mockito + AsserJ)
+- [X] Utilize Java 20
+- [X] Spring Command Line Runner for migrating players data
+- [X] Handle LocalDate serialize/deserialize
+- [X] Spring Web CRUD
+- [X] Spring Data JPA
+- [X] PostgreSQL
+- [X] Docker Compose
+- [ ] Spring HATEOAS
+- [ ] Combinator Validation
+- [ ] Spring Boot Test Starter (Mockito + AsserJ)
 
 ## References
 
