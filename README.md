@@ -9,6 +9,7 @@
 - [X] Spring Data JPA
 - [X] PostgreSQL
 - [X] Docker Compose
+- [ ] Standard Response Codes
 - [ ] Spring HATEOAS
 - [ ] Combinator Validation
 - [ ] Spring Boot Test Starter (Mockito + AsserJ)
@@ -77,31 +78,93 @@ $ mvn spring-boot:run
 - `GET /api/players` retrieves a list of all players
 
 ```json
-
+[
+  {
+    "id": 2,
+    "name": "player b",
+    "email": "b@b.com",
+    "password": "password",
+    "dateOfBirth": "2023-05-21"
+  },
+  {
+    "id": 3,
+    "name": "player c",
+    "email": "c@c.com",
+    "password": "password",
+    "dateOfBirth": "2023-05-21"
+  },
+  {
+    "id": 4,
+    "name": "player d",
+    "email": "d@d.com",
+    "password": "password",
+    "dateOfBirth": "2023-05-21"
+  }
+]
 ```
 
 - `GET /api/players/{id}` retrieves a specific player with the matching `id`
 
 ```json
-
+{
+  "id": 6,
+  "name": "player f",
+  "email": "f@f.com",
+  "password": "password",
+  "dateOfBirth": "2023-05-21"
+}
 ```
 
 - `POST /api/players` creates a new player; returned the newly created player
 
 ```json
-
+{
+  "id": 32,
+  "name": "player 0",
+  "email": "player0@gmail.com",
+  "password": "12345670",
+  "dateOfBirth": "1990-02-01"
+}
 ```
 
 - `PATCH /api/players` creates a batch of new players; returned the newly created players
 
 ```json
-
+[
+  {
+    "id": 27,
+    "name": "player 1",
+    "email": "player0@gmail.com",
+    "password": "12345671",
+    "dateOfBirth": "1990-01-01"
+  },
+  {
+    "id": 28,
+    "name": "player 1",
+    "email": "player1@gmail.com",
+    "password": "12345672",
+    "dateOfBirth": "1990-01-02"
+  },
+  {
+    "id": 29,
+    "name": "player 3",
+    "email": "player3@gmail.com",
+    "password": "12345673",
+    "dateOfBirth": "1990-01-03"
+  }
+]
 ```
 
 - `PUT /api/players/{id}` edits an existing player with the matching `id`; returned the newly edited player; creates new player if not existed
 
 ```json
-
+{
+  "id": 6,
+  "name": "player 6",
+  "email": "player6@gmail.com",
+  "password": "12345670",
+  "dateOfBirth": "1990-02-01"
+}
 ```
 
 - `DELETE /api/players/{id}` deletes an existing player with the matching `id`; returned nothing if success
