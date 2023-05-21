@@ -13,6 +13,7 @@
 - [ ] Spring HATEOAS
 - [ ] Combinator Validation
 - [ ] Spring Boot Test Starter (Mockito + AsserJ)
+- [ ] GitHub Actions CI Pipeline
 
 ## References
 
