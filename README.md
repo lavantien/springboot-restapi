@@ -10,8 +10,9 @@
 - [x] PostgreSQL
 - [x] Docker Compose
 - [x] Standard Response Codes
-- [ ] Spring HATEOAS
-- [ ] Combinator Validation
+- ~~[ ] Exceptions~~ Deprecated
+- ~~[ ] Spring HATEOAS~~ Deprecated
+- [x] Combinator Validation
 - [ ] Spring Boot Test Starter (Mockito + AssertJ)
 - [ ] GitHub Actions CI Pipeline
 
@@ -132,14 +133,14 @@ mvn spring-boot:run
 ```
 
 - `PATCH /api/players` creates a batch of new players;
-  returned the newly created players
+  returned the failed players
 
 ```json
 [
   {
     "id": 27,
     "name": "player 1",
-    "email": "player0@gmail.com",
+    "email": "player0gmail.com",
     "password": "12345671",
     "dateOfBirth": "1990-01-01"
   },
@@ -148,14 +149,7 @@ mvn spring-boot:run
     "name": "player 1",
     "email": "player1@gmail.com",
     "password": "12345672",
-    "dateOfBirth": "1990-01-02"
-  },
-  {
-    "id": 29,
-    "name": "player 3",
-    "email": "player3@gmail.com",
-    "password": "12345673",
-    "dateOfBirth": "1990-01-03"
+    "dateOfBirth": "2020-01-02"
   }
 ]
 ```

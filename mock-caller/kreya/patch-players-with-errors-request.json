@@ -1,0 +1,14 @@
+[
+  {
+    "name": "player 1",
+    "email": "player0gmail.com",
+    "password": "12345671",
+    "dateOfBirth": "1990-01-01"
+  },
+  {
+    "name": "player 1",
+    "email": "player1@gmail.com",
+    "password": "12345672",
+    "dateOfBirth": "2020-01-02"
+  }
+]

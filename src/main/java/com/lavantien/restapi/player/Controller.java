@@ -1,5 +1,7 @@
 package com.lavantien.restapi.player;
 
+import com.lavantien.restapi.player.Validator.ValidationResult;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +33,11 @@ public class Controller {
 
   @PostMapping
   public ResponseEntity<Player> createPlayer(@RequestBody Player player) {
+    var validationResult =
+        Validator.validEmail().and(Validator.validAge()).apply(player);
+    if (validationResult != ValidationResult.SUCCESS) {
+      return ResponseEntity.status(400).build();
+    }
     var savedPlayer = repository.save(player);
     return ResponseEntity.status(201).body(savedPlayer);
   }
@@ -62,6 +69,11 @@ public class Controller {
       player.setId(id);
       return ResponseEntity.status(201).body(repository.save(player));
     }
+    var validationResult =
+        Validator.validEmail().and(Validator.validAge()).apply(player);
+    if (validationResult != ValidationResult.SUCCESS) {
+      return ResponseEntity.status(400).build();
+    }
     foundPlayer.setName(player.getName());
     foundPlayer.setEmail(player.getEmail());
     foundPlayer.setPassword(player.getPassword());
@@ -72,7 +84,21 @@ public class Controller {
   @PatchMapping
   public ResponseEntity<List<Player>>
   patchPlayers(@RequestBody List<Player> players) {
-    var savedPlayers = repository.saveAll(players);
+    var errorPlayers = new ArrayList<Player>();
+    var okPlayers = new ArrayList<Player>();
+    for (var player : players) {
+      var validationResult =
+          Validator.validEmail().and(Validator.validAge()).apply(player);
+      if (validationResult != ValidationResult.SUCCESS) {
+        errorPlayers.add(player);
+      } else {
+        okPlayers.add(player);
+      }
+    }
+    if (errorPlayers.size() > 0) {
+      return ResponseEntity.status(400).body(errorPlayers);
+    }
+    var savedPlayers = repository.saveAll(okPlayers);
     return ResponseEntity.status(201).body(savedPlayers);
   }
 }

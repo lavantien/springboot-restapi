@@ -1,0 +1,22 @@
+{
+  "details": {
+    "path": "/players",
+    "method": "PATCH",
+    "headers": [
+      {
+        "key": "Content-Type",
+        "value": "application/json"
+      }
+    ],
+    "pathParams": []
+  },
+  "requests": [
+    {
+      "location": "patch-players-with-errors-request.json",
+      "contentType": "json"
+    }
+  ],
+  "operationType": "unary",
+  "invokerName": "rest",
+  "typeHint": "PATCH"
+}
