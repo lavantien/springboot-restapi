@@ -1,8 +1,8 @@
 package com.lavantien.restapi.player;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -16,49 +16,63 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/players")
 public class Controller {
-    private final Repository repository;
+  private final Repository repository;
 
-    @Autowired
-    public Controller(Repository repository) {
-        this.repository = repository;
-    }
+  @Autowired
+  public Controller(Repository repository) {
+    this.repository = repository;
+  }
 
-    @GetMapping
-    public List<Player> getPlayers() {
-        return repository.findAll();
-    }
+  @GetMapping
+  public ResponseEntity<List<Player>> getPlayers() {
+    var foundPlayers = repository.findAll();
+    return ResponseEntity.status(200).body(foundPlayers);
+  }
 
-    @PostMapping
-    public Player createPlayer(@RequestBody Player player) {
-        return repository.save(player);
-    }
+  @PostMapping
+  public ResponseEntity<Player> createPlayer(@RequestBody Player player) {
+    var savedPlayer = repository.save(player);
+    return ResponseEntity.status(201).body(savedPlayer);
+  }
 
-    @GetMapping("/{id}")
-    public Player getPlayer(@PathVariable Long id) {
-        return repository.findById(id).get();
+  @GetMapping("/{id}")
+  public ResponseEntity<Player> getPlayer(@PathVariable Long id) {
+    var foundPlayer = repository.findById(id).orElse(null);
+    if (foundPlayer == null) {
+      return ResponseEntity.status(404).build();
     }
+    return ResponseEntity.status(200).body(foundPlayer);
+  }
 
-    @DeleteMapping("/{id}")
-    public void deletePlayer(@PathVariable Long id) {
-        repository.deleteById(id);
+  @DeleteMapping("/{id}")
+  public ResponseEntity<?> deletePlayer(@PathVariable Long id) {
+    var foundPlayer = repository.findById(id).orElse(null);
+    if (foundPlayer == null) {
+      return ResponseEntity.status(404).build();
     }
+    repository.deleteById(id);
+    return ResponseEntity.status(204).build();
+  }
 
-    @PutMapping("/{id}")
-    public Player updatePlayer(@PathVariable Long id, @RequestBody Player player) {
-        return repository.findById(id).map(e -> {
-            e.setName(player.getName());
-            e.setEmail(player.getEmail());
-            e.setPassword(player.getPassword());
-            e.setDateOfBirth(player.getDateOfBirth());
-            return repository.save(e);
-        }).orElseGet(() -> {
-            player.setId(id);
-            return repository.save(player);
-        });
+  @PutMapping("/{id}")
+  public ResponseEntity<Player> updatePlayer(@PathVariable Long id,
+                                             @RequestBody Player player) {
+    var foundPlayer = repository.findById(id).orElse(null);
+    if (foundPlayer == null) {
+      player.setId(id);
+      return ResponseEntity.status(201).body(repository.save(player));
     }
+    foundPlayer.setName(player.getName());
+    foundPlayer.setEmail(player.getEmail());
+    foundPlayer.setPassword(player.getPassword());
+    foundPlayer.setDateOfBirth(player.getDateOfBirth());
+    return ResponseEntity.status(202).body(repository.save(foundPlayer));
+  }
 
-    @PatchMapping
-    public List<Player> patchPlayers(@RequestBody List<Player> players) {
-        return repository.saveAll(players);
-    }
+  @PatchMapping
+  public ResponseEntity<List<Player>>
+  patchPlayers(@RequestBody List<Player> players) {
+    var savedPlayers = repository.saveAll(players);
+    return ResponseEntity.status(201).body(savedPlayers);
+  }
 }

@@ -2,17 +2,17 @@
 
 ## Includes
 
-- [X] Utilize Java 20
-- [X] Spring Command Line Runner for migrating players data
-- [X] Handle LocalDate serialize/deserialize
-- [X] Spring Web CRUD
-- [X] Spring Data JPA
-- [X] PostgreSQL
-- [X] Docker Compose
-- [ ] Standard Response Codes
+- [x] Utilize Java 20
+- [x] Spring Command Line Runner for migrating players data
+- [x] Handle LocalDate serialize/deserialize
+- [x] Spring Web CRUD
+- [x] Spring Data JPA
+- [x] PostgreSQL
+- [x] Docker Compose
+- [x] Standard Response Codes
 - [ ] Spring HATEOAS
 - [ ] Combinator Validation
-- [ ] Spring Boot Test Starter (Mockito + AsserJ)
+- [ ] Spring Boot Test Starter (Mockito + AssertJ)
 - [ ] GitHub Actions CI Pipeline
 
 ## References
@@ -32,47 +32,50 @@
 
 ### With an IDE
 
-- Install `Java 20`, latest `Docker`, and `IntelliJ Community` with the `IdeaVim` & `Docker` plugins installed
+- Install `Java 20`, latest `Docker`, and `IntelliJ Community`
+  with the `IdeaVim` & `Docker` plugins installed
 - Run the database by open project with IntelliJ, open `compose.yaml` and hit run
 - Create `player` database in a terminal:
 
 ```bash
-$ docker exec -it postgres bash
-# psql -U postgres
-# create database player;
+docker exec -it postgres bash
+psql -U postgres
+create database player;
 ```
 
-- Run the backend by open `com/lavantien/restapi/RestapiApplication.java` and hit run
+- Run the backend by open `com/lavantien/restapi/RestapiApplication.java`
 
 ### With Neovim
 
-- Install `Java 20`, latest `Docker`, and `Neovim` with the `Mason` plugins installed; Use `Mason` to installed a Java LS
+- Install `Java 20`, latest `Docker`, and `Neovim` with the `Mason` plugins;
+  Use `Mason` to install a Java LS
 - Run the database in a terminal:
 
 ```bash
-$ docker compose up -d
+docker compose up -d
 ```
 
 - Create `player` database in a terminal:
 
 ```bash
-$ docker exec -it postgres bash
-# psql -U postgres
-# create database player;
+docker exec -it postgres bash
+psql -U postgres
+create database player;
 ```
 
 - Run the backend in a terminal:
 
 ```bash
-$ mvn install
-$ mvn spring-boot:run
+mvn install
+mvn spring-boot:run
 ```
 
 ### Common
 
 - Using `curl` or any mock callers to test the endpoints at `localhost:8081`
 - Or you can use `Kreya` and take advantage of the `mock-caller` directory
-- There will be an existing list of players migrated to the database for testing purpose
+- There will be an existing list of players migrated to the database
+  for testing purpose
 
 ## API Documentation
 
@@ -128,7 +131,8 @@ $ mvn spring-boot:run
 }
 ```
 
-- `PATCH /api/players` creates a batch of new players; returned the newly created players
+- `PATCH /api/players` creates a batch of new players;
+  returned the newly created players
 
 ```json
 [
@@ -156,7 +160,8 @@ $ mvn spring-boot:run
 ]
 ```
 
-- `PUT /api/players/{id}` edits an existing player with the matching `id`; returned the newly edited player; creates new player if not existed
+- `PUT /api/players/{id}` edits an existing player with the matching `id`;
+  returned the newly edited player; creates new player if not existed
 
 ```json
 {
@@ -168,7 +173,8 @@ $ mvn spring-boot:run
 }
 ```
 
-- `DELETE /api/players/{id}` deletes an existing player with the matching `id`; returned nothing if success
+- `DELETE /api/players/{id}` deletes an existing player with the matching `id`;
+  returned nothing if success
 
 ```json
 
