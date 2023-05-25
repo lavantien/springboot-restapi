@@ -73,6 +73,12 @@ mvn spring-boot:run
 
 ### Common
 
+- Run unit test with `mvn test`, or more specifically:
+
+```bash
+mvn test -Dtest=ControllerTest#allPlayers test
+```
+
 - Using `curl` or any mock callers to test the endpoints at `localhost:8081`
 - Or you can use `Kreya` and take advantage of the `mock-caller` directory
 - There will be an existing list of players migrated to the database
