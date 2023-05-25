@@ -1,5 +1,7 @@
 # Simple RESTful API with Validator and Unit Testing
 
+![CI](https://github.com/lavantien/springboot-restapi/actions/workflows/ci.yml/badge.svg)
+
 ## Includes
 
 - [x] Utilize Java 20
