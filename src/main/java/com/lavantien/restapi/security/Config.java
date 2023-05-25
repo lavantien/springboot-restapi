@@ -10,11 +10,11 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class Config {
-  @Bean
-  public SecurityFilterChain securityFilterChain(HttpSecurity http)
-      throws Exception {
-    // Disable CSRF for POST requests from mock callers
-    http.csrf(AbstractHttpConfigurer::disable);
-    return http.build();
-  }
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http)
+            throws Exception {
+        // Disable CSRF for POST requests from mock callers
+        http.csrf(AbstractHttpConfigurer::disable);
+        return http.build();
+    }
 }

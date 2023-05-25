@@ -13,7 +13,7 @@
 - ~~[ ] Exceptions~~ Deprecated
 - ~~[ ] Spring HATEOAS~~ Deprecated
 - [x] Combinator Validation
-- [ ] Spring Boot Test Starter (Mockito + AssertJ)
+- [x] Spring Boot Test Starter (Mockito + AssertJ)
 - [ ] GitHub Actions CI Pipeline
 
 ## References

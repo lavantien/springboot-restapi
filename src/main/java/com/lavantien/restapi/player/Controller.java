@@ -18,87 +18,83 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/players")
 public class Controller {
-  private final Repository repository;
+    private final Repository repository;
 
-  @Autowired
-  public Controller(Repository repository) {
-    this.repository = repository;
-  }
+    @Autowired
+    public Controller(Repository repository) {
+        this.repository = repository;
+    }
 
-  @GetMapping
-  public ResponseEntity<List<Player>> getPlayers() {
-    var foundPlayers = repository.findAll();
-    return ResponseEntity.status(200).body(foundPlayers);
-  }
+    @GetMapping
+    public ResponseEntity<List<Player>> getPlayers() {
+        var foundPlayers = repository.findAll();
+        return ResponseEntity.status(200).body(foundPlayers);
+    }
 
-  @PostMapping
-  public ResponseEntity<Player> createPlayer(@RequestBody Player player) {
-    var validationResult =
-        Validator.validEmail().and(Validator.validAge()).apply(player);
-    if (validationResult != ValidationResult.SUCCESS) {
-      return ResponseEntity.status(400).build();
+    @PostMapping
+    public ResponseEntity<Player> createPlayer(@RequestBody Player player) {
+        var validationResult = Validator.validEmail().and(Validator.validAge()).apply(player);
+        if (validationResult != ValidationResult.SUCCESS) {
+            return ResponseEntity.status(400).build();
+        }
+        var savedPlayer = repository.save(player);
+        return ResponseEntity.status(201).body(savedPlayer);
     }
-    var savedPlayer = repository.save(player);
-    return ResponseEntity.status(201).body(savedPlayer);
-  }
 
-  @GetMapping("/{id}")
-  public ResponseEntity<Player> getPlayer(@PathVariable Long id) {
-    var foundPlayer = repository.findById(id).orElse(null);
-    if (foundPlayer == null) {
-      return ResponseEntity.status(404).build();
+    @GetMapping("/{id}")
+    public ResponseEntity<Player> getPlayer(@PathVariable Long id) {
+        var foundPlayer = repository.findById(id).orElse(null);
+        if (foundPlayer == null) {
+            return ResponseEntity.status(404).build();
+        }
+        return ResponseEntity.status(200).body(foundPlayer);
     }
-    return ResponseEntity.status(200).body(foundPlayer);
-  }
 
-  @DeleteMapping("/{id}")
-  public ResponseEntity<?> deletePlayer(@PathVariable Long id) {
-    var foundPlayer = repository.findById(id).orElse(null);
-    if (foundPlayer == null) {
-      return ResponseEntity.status(404).build();
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deletePlayer(@PathVariable Long id) {
+        var foundPlayer = repository.findById(id).orElse(null);
+        if (foundPlayer == null) {
+            return ResponseEntity.status(404).build();
+        }
+        repository.deleteById(id);
+        return ResponseEntity.status(204).build();
     }
-    repository.deleteById(id);
-    return ResponseEntity.status(204).build();
-  }
 
-  @PutMapping("/{id}")
-  public ResponseEntity<Player> updatePlayer(@PathVariable Long id,
-                                             @RequestBody Player player) {
-    var foundPlayer = repository.findById(id).orElse(null);
-    if (foundPlayer == null) {
-      player.setId(id);
-      return ResponseEntity.status(201).body(repository.save(player));
+    @PutMapping("/{id}")
+    public ResponseEntity<Player> updatePlayer(@PathVariable Long id,
+            @RequestBody Player player) {
+        var foundPlayer = repository.findById(id).orElse(null);
+        if (foundPlayer == null) {
+            player.setId(id);
+            return ResponseEntity.status(201).body(repository.save(player));
+        }
+        var validationResult = Validator.validEmail().and(Validator.validAge()).apply(player);
+        if (validationResult != ValidationResult.SUCCESS) {
+            return ResponseEntity.status(400).build();
+        }
+        foundPlayer.setName(player.getName());
+        foundPlayer.setEmail(player.getEmail());
+        foundPlayer.setPassword(player.getPassword());
+        foundPlayer.setDateOfBirth(player.getDateOfBirth());
+        return ResponseEntity.status(202).body(repository.save(foundPlayer));
     }
-    var validationResult =
-        Validator.validEmail().and(Validator.validAge()).apply(player);
-    if (validationResult != ValidationResult.SUCCESS) {
-      return ResponseEntity.status(400).build();
-    }
-    foundPlayer.setName(player.getName());
-    foundPlayer.setEmail(player.getEmail());
-    foundPlayer.setPassword(player.getPassword());
-    foundPlayer.setDateOfBirth(player.getDateOfBirth());
-    return ResponseEntity.status(202).body(repository.save(foundPlayer));
-  }
 
-  @PatchMapping
-  public ResponseEntity<List<Player>>
-  patchPlayers(@RequestBody List<Player> players) {
-    var errorPlayers = new ArrayList<Player>();
-    var okPlayers = new ArrayList<Player>();
-    for (var player : players) {
-      var validationResult =
-          Validator.validEmail().and(Validator.validAge()).apply(player);
-      if (validationResult != ValidationResult.SUCCESS) {
-        errorPlayers.add(player);
-      } else {
-        okPlayers.add(player);
-      }
+    @PatchMapping
+    public ResponseEntity<List<Player>> patchPlayers(@RequestBody List<Player> players) {
+        var errorPlayers = new ArrayList<Player>();
+        var okPlayers = new ArrayList<Player>();
+        for (var player : players) {
+            var validationResult = Validator.validEmail().and(Validator.validAge()).apply(player);
+            if (validationResult != ValidationResult.SUCCESS) {
+                errorPlayers.add(player);
+            } else {
+                okPlayers.add(player);
+            }
+        }
+        if (errorPlayers.size() > 0) {
+            return ResponseEntity.status(400).body(errorPlayers);
+        }
+        var savedPlayers = repository.saveAll(okPlayers);
+        return ResponseEntity.status(201).body(savedPlayers);
     }
-    if (errorPlayers.size() > 0) {
-      return ResponseEntity.status(400).body(errorPlayers);
-    }
-    var savedPlayers = repository.saveAll(okPlayers);
-    return ResponseEntity.status(201).body(savedPlayers);
-  }
 }

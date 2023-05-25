@@ -11,19 +11,19 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 class LoadDatabase {
-  private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
+    private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
 
-  @Bean
-  CommandLineRunner initDatabase(Repository repository) {
-    return args -> {
-      var alphabet = "abcdefghijklmnopqrstuvwxyz".toCharArray();
-      for (var c : alphabet) {
-        var player = repository.save(
-            new Player("player " + String.valueOf(c),
-                       String.valueOf(c) + "@" + String.valueOf(c) + ".com",
-                       "password", LocalDate.now()));
-        log.info("Migrating: " + player);
-      }
-    };
-  }
+    @Bean
+    CommandLineRunner initDatabase(Repository repository) {
+        return args -> {
+            var alphabet = "abcdefghijklmnopqrstuvwxyz".toCharArray();
+            for (var c : alphabet) {
+                var player = repository.save(
+                        new Player("player " + String.valueOf(c),
+                                String.valueOf(c) + "@" + String.valueOf(c) + ".com",
+                                "password", LocalDate.now()));
+                log.info("Migrating: " + player);
+            }
+        };
+    }
 }
