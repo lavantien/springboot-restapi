@@ -12,11 +12,11 @@
 - [x] PostgreSQL
 - [x] Docker Compose
 - [x] Standard Response Codes
-- ~~[ ] Exceptions~~ Deprecated
-- ~~[ ] Spring HATEOAS~~ Deprecated
 - [x] Combinator Validation
 - [x] Spring Boot Test Starter (Mockito + AssertJ)
 - [x] GitHub Actions CI Pipeline
+- ~~[ ] Exceptions~~ Deprecated
+- ~~[ ] Spring HATEOAS~~ Deprecated
 
 ## References
 
@@ -28,10 +28,6 @@
 - [Adding workflow status badge](https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/adding-a-workflow-status-badge)
 - [Learn Spring Boot 3](https://youtu.be/-mwpoE0x0JQ)
 - [Java Functional Programming](https://youtu.be/VRpHdSFWGPs)
-
-## Detailed Design Diagrams (UML + Sequence)
-
-- Writing diagrams is a form of masturbation
 
 ## Local Setup
 
