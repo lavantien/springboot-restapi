@@ -1,8 +1,8 @@
 package com.lavantien.restapi.player;
 
-import java.time.LocalDate;
+// import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
+// import java.util.List;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -27,15 +27,15 @@ class ControllerTest {
         Assertions.assertThat(foundPlayers.getStatusCode().toString()).isEqualTo("200 OK");
     }
 
-    private static List<Player> generatePlayers() {
-        var players = new ArrayList<Player>();
-        var alphabet = "abcde".toCharArray();
-        for (var c : alphabet) {
-            players.add(
-                    new Player("player " + String.valueOf(c),
-                            String.valueOf(c) + "@" + String.valueOf(c) + ".com",
-                            "password", LocalDate.now()));
-        }
-        return players;
-    }
+    // private static List<Player> generatePlayers() {
+    //     var players = new ArrayList<Player>();
+    //     var alphabet = "abcde".toCharArray();
+    //     for (var c : alphabet) {
+    //         players.add(
+    //                 new Player("player " + String.valueOf(c),
+    //                         String.valueOf(c) + "@" + String.valueOf(c) + ".com",
+    //                         "password", LocalDate.now()));
+    //     }
+    //     return players;
+    // }
 }
