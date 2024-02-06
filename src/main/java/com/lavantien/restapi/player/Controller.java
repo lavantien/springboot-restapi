@@ -29,6 +29,7 @@ public class Controller {
         return ResponseEntity.status(200).body(foundPlayers);
     }
 
+    @SuppressWarnings("null")
     @PostMapping
     public ResponseEntity<Player> createPlayer(@RequestBody Player player) {
         var validationResult = Validator.validEmail().and(Validator.validAge()).apply(player);
@@ -39,6 +40,7 @@ public class Controller {
         return ResponseEntity.status(201).body(savedPlayer);
     }
 
+    @SuppressWarnings("null")
     @GetMapping("/{id}")
     public ResponseEntity<Player> getPlayer(@PathVariable Long id) {
         var foundPlayer = repository.findById(id).orElse(null);
@@ -48,6 +50,7 @@ public class Controller {
         return ResponseEntity.status(200).body(foundPlayer);
     }
 
+    @SuppressWarnings("null")
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deletePlayer(@PathVariable Long id) {
         var foundPlayer = repository.findById(id).orElse(null);
@@ -58,6 +61,7 @@ public class Controller {
         return ResponseEntity.status(204).build();
     }
 
+    @SuppressWarnings("null")
     @PutMapping("/{id}")
     public ResponseEntity<Player> updatePlayer(@PathVariable Long id,
             @RequestBody Player player) {
